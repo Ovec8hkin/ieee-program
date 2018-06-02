@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<!--
+	Eventually by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>UHack 2018</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" type="text/css"/>
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header -->
+		<div id="content">
+			<div id="left" style="float: left; margin-right: 10em; margin-top: -35px;">
+				<img src="images/icon.svg" style="width: 20em;">
+			</div>
+			<div id="right" style="float: left;">
+				<header id="header">
+					<h1>UHack 2018</h1>
+					<p>University of Miami, Miami, FL<br />
+						<b>DECEMBER 1-2</b></p>
+				</header>
+
+
+
+				<!-- Signup Form -->
+				<form id="signup-form" method="get" action="#">
+					<input type="email" name="email" id="email" placeholder="Email Address" />
+					<input type="submit" value="Receive Updates" id="submit-form"/>
+				</form>
+
+				<p><i>More information coming soon!</i></p>
+
+			</div>
+		</div>
+		<!-- Footer -->
+		<!--<footer id="footer">
+			<ul class="icons">
+				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
+				<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>&copy; Untitled.</li><li>Credits: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</footer>-->
+
+		<!-- Scripts -->
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+		<script src="assets/js/jquery.js"></script>
+
+		<script>
+
+            // Variable to hold request
+            var request;
+
+            // Bind to the submit event of our form
+            $("form").submit(function(event){
+
+                // Abort any pending request
+                if (request) {
+                    request.abort();
+                }
+                // setup some local variables
+                var $form = $(this);
+
+                // Let's select and cache all the fields
+                var $inputs = $form.find("input, select, button, textarea");
+
+                // Serialize the data in the form
+                var serializedData = $form.serialize();
+
+                // Let's disable the inputs for the duration of the Ajax request.
+                // Note: we disable elements AFTER the form data has been serialized.
+                // Disabled form elements will not be serialized.
+                $inputs.prop("disabled", true);
+
+                // Fire off the request to /form.php
+                request = $.ajax({
+                    url: "https://script.google.com/macros/s/AKfycbzz44n5McTmOvZaiHBS2qo8eR7MDKg91P74X7XtzUE9igrcMUKI/exec",
+                    type: "post",
+                    data: serializedData
+                });
+
+                // Callback handler that will be called on success
+                request.done(function (response, textStatus, jqXHR){
+                    // Log a message to the console
+                    console.log("Hooray, it worked!");
+                    console.log(response);
+                    console.log(textStatus);
+                    console.log(jqXHR);
+                });
+
+                // Callback handler that will be called on failure
+                request.fail(function (jqXHR, textStatus, errorThrown){
+                    // Log the error to the console
+                    console.error(
+                        "The following error occurred: "+
+                        textStatus, errorThrown
+                    );
+                });
+
+                // Callback handler that will be called regardless
+                // if the request failed or succeeded
+                request.always(function () {
+                    // Reenable the inputs
+                    $inputs.prop("disabled", false);
+                });
+
+                // Prevent default posting of form
+                event.preventDefault();
+            });
+
+		</script>
+
+	</body>
+</html>
